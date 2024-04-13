@@ -14,13 +14,13 @@
                             </div>
                         @endif
 
-                      
+
 
 
                        <div>
                         <p>               Notification   <sup>{{Auth::user()->unreadNotifications->count()}}</sup> </p>        </p>
                        </div>
-                        @foreach (Auth::user()->notifications as $notification)
+                        @foreach (Auth::user()->unreadNotifications as $notification)
                         <div class="bg-primary ">
                            You Have 1 Notification As Title {{$notification->data['title']}}
                             <a href="{{route('markasread',$notification->id)}}" class="bg-danger "> Mark As Read</a>
