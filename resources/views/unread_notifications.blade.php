@@ -5,43 +5,28 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <div>All Users Details :</div>
-
-                        @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-
-
-                        <div class="btn btn-success"><a href="#"  class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup></a> </div>
-                        <div class="btn btn-success" ><a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a> </div>
-
-
+                    <div class="card-header">{{ __('All  Un Read Notification :') }}                  <a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a>
                     </div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                              
-                                <th>Status</th>
+                                <th>Unique Notification Id</th>
+                                <th>User Id</th>
+                                {{-- <th>Read Status</th> --}}
+
+
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($unread_notifications as $notification)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td><a href="{{ route('send.notification', $user->id) }}">Send Notification</a></td>
-                                    <td>Unread</td>
+                                    <td>{{ $notification->id }}</td>
+                                    <td>{{ $notification->notifiable_id }}</td>
+                                    {{-- <td>{{ $notification->read_at }}</td> --}}
+
 
                                 </tr>
                             @endforeach
@@ -52,11 +37,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.alert').alert();
-        });
-    </script>
 @endsection
