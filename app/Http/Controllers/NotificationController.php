@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewPostNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -26,6 +27,17 @@ class NotificationController extends Controller
         } else {
             echo "User Not Found";
         }
-        
+
     }
+
+    public function markAsRead($id)
+    {
+        if($id){
+            Auth::user()->notifications->where('id',$id)->markAsRead();
+        }
+
+     return back();
+    }
+
+
 }

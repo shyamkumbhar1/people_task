@@ -23,5 +23,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Notification
 Route::get('/send-notification', [App\Http\Controllers\NotificationController::class, 'sendNotification'])->name('send.notification');
+Route::get('/markasread/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('markasread');
+
 
 
