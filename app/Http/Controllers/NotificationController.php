@@ -6,11 +6,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewPostNotification;
 use Illuminate\Support\Facades\Notification;
+use App\Models\Notification as UserNotification;
 
 class NotificationController extends Controller
 {
-    public function sendNotification()
+    public function sendNotification($id)
     {
+
         $post =
             [
                 'id' => 1,
@@ -18,12 +20,13 @@ class NotificationController extends Controller
                 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ];
 
-        $userToNotify = User::first();
+            $userToNotify = User::where('id', $id)->first();
+            // dd( $userToNotify);
 
         if ($userToNotify) {
             Notification::send($userToNotify, new NewPostNotification($post));
 
-            return "Notification Send Successfully";
+            return back()->with('success', 'Notification sent successfully.');
         } else {
             echo "User Not Found";
         }
@@ -37,6 +40,12 @@ class NotificationController extends Controller
         }
 
      return back();
+    }
+    public function getAllNotification()
+    {
+        $notifications = UserNotification::all();
+        // dd($notification);
+        return view('getAllNotification',compact('notifications'));
     }
 
 

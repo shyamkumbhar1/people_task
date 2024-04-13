@@ -20,14 +20,19 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" class="btn btn-primary">
                     {{ config('app.name', 'Notification App') }}
                 </a>
                 @auth
                 @if (auth()->user()->role === 'admin')
-                    <a href="{{route('dashboard')}}">Dashboard</a>
+                <a href="{{route('user')}}" class="btn btn-success">All Users</a>
                 @endif
+                 @if (auth()->user()->role === 'admin')
+                <a href="{{route('get.all.notification')}}" class="btn btn-primary">All Notification Status</a>
+                @endif
+
             @endauth
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -81,5 +86,11 @@
             @yield('content')
         </main>
     </div>
+  <!-- Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 </body>
 </html>

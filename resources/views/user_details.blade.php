@@ -1,0 +1,62 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div>All Users Details :</div>
+
+                        @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+
+                        <div class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup> </div>
+                        <div class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup> </div>
+
+
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Send Notification</th>
+                                <th>Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td><a href="{{ route('send.notification', $user->id) }}">Send Notification</a></td>
+                                    <td>Unread</td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.alert').alert();
+        });
+    </script>
+@endsection
