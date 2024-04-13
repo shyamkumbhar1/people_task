@@ -25,10 +25,14 @@
                 </a>
                 @auth
                 @if (auth()->user()->role === 'admin')
+
                 <a href="{{route('user')}}" class="btn btn-success">All Users</a>
                 @endif
                  @if (auth()->user()->role === 'admin')
-                <a href="{{route('get.all.notification')}}" class="btn btn-primary">All Notification Status</a>
+                <a href="{{route('get.all.notification')}}" class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup></a>
+                @endif
+                 @if (auth()->user()->role === 'admin')
+                {{-- <a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a> --}}
                 @endif
 
             @endauth

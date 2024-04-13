@@ -44,8 +44,9 @@ class NotificationController extends Controller
     public function getAllNotification()
     {
         $notifications = UserNotification::all();
+        $unread_notifications = UserNotification::whereNull('read_at')->get();
         // dd($notification);
-        return view('getAllNotification',compact('notifications'));
+        return view('getAllNotification',compact('notifications','unread_notifications'));
     }
 
 

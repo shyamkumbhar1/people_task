@@ -15,6 +15,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+    Route::get('/unread-notification', [App\Http\Controllers\UserController::class, 'unreadNotification'])->name('unread.notification');
 });
 
 

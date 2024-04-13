@@ -18,8 +18,8 @@
                     @endif
 
 
-                        {{-- <div class="btn btn-success"><a href="{{route('get.all.notification')}}"  class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup></a> </div> --}}
-                        {{-- <div class="btn btn-success" ><a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a> </div> --}}
+                        <div class="btn btn-success"><a href="#"  class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup></a> </div>
+                        <div class="btn btn-success" ><a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a> </div>
 
 
                     </div>
@@ -29,7 +29,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Send Notification</th>
+                              
                                 <th>Status</th>
 
                             </tr>

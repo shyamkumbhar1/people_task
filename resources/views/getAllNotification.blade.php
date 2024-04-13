@@ -5,13 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('All  Notification Status') }}     </div>
+                    <div class="card-header">{{ __('All  Notification Status :') }}                  <a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>User Name</th>
-                                <th>Read</th>
+                                <th>Unique Notification Id</th>
+                                <th>User Id</th>
+                                <th>Read Status</th>
 
 
 
@@ -21,6 +23,7 @@
                             @foreach ($notifications as $notification)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $notification->id }}</td>
                                     <td>{{ $notification->notifiable_id }}</td>
                                     <td>{{ $notification->read_at }}</td>
 
