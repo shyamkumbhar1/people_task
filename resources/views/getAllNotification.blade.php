@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('All  Notification Status :') }}                  <a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a>
+                    <div class="card-header">{{ __('All  Notification Send :') }}
                     </div>
                     <table class="table">
                         <thead>
