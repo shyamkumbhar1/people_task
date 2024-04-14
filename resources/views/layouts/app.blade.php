@@ -38,6 +38,7 @@
                             <sup>{{ $unread_notifications->count() }}</sup></a>
                     @endif
                     <a href="{{ route('edit.user.setting') }}" class="btn btn-success"> User Setting</a>
+                    <a href="{{route('home')}}" class="btn btn-success"> My Notification <sup> {{Auth::user()->unreadNotifications->count() }}</sup></a>
 
                 @endauth
 
