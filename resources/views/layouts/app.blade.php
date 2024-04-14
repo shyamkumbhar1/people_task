@@ -37,6 +37,7 @@
                         <a href="{{ route('unread.notification') }}" class="btn btn-success">UnRead Notification
                             <sup>{{ $unread_notifications->count() }}</sup></a>
                     @endif
+                    <a href="{{ route('edit.user.setting') }}" class="btn btn-success"> User Setting</a>
 
                 @endauth
 
@@ -88,7 +89,7 @@
                                                 {{ __('Leave Impersonate') }}
                                             </a>
                                             @endif
-                                    
+
                                     @endauth
 
 

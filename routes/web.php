@@ -19,7 +19,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/unread-notification', [App\Http\Controllers\UserController::class, 'unreadNotification'])->name('unread.notification');
     Route::get('/impersonate/{id}', [App\Http\Controllers\ImpersonateController::class, 'impersonate'])->name('users.impersonate');
 });
-Route::get('/leave-impersonate', [App\Http\Controllers\ImpersonateController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+Route::get('/leave-impersonate', [App\Http\Controllers\ImpersonateController::class, 'leaveImpersonate'])->name('users.leave-impersonate')->middleware('auth');
+Route::get('/edit-user-setting', [App\Http\Controllers\UserController::class, 'editUserSetting'])->name('edit.user.setting')->middleware('auth');
+Route::post('/update-user-setting', [App\Http\Controllers\UserController::class, 'updateUserSetting'])->name('update.user.setting')->middleware('auth');
+
 
 
 // Notification
