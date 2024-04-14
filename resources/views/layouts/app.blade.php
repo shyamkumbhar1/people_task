@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -24,20 +26,23 @@
                     {{ config('app.name', 'Notification App') }}
                 </a>
                 @auth
-                @if (auth()->user()->role === 'admin')
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('user') }}" class="btn btn-success">All Users</a>
+                    @endif
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('get.all.notification') }}" class="btn btn-success">Total Notification Send
+                            <sup>{{ $notifications->count() }}</sup></a>
+                    @endif
+                    @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('unread.notification') }}" class="btn btn-success">UnRead Notification
+                            <sup>{{ $unread_notifications->count() }}</sup></a>
+                    @endif
 
-                <a href="{{route('user')}}" class="btn btn-success">All Users</a>
-                @endif
-                 @if (auth()->user()->role === 'admin')
-                <a href="{{route('get.all.notification')}}" class="btn btn-success">Total Notification Send <sup>{{ $notifications->count() }}</sup></a>
-                @endif
-                 @if (auth()->user()->role === 'admin')
-                <a href="{{route('unread.notification')}}" class="btn btn-success">UnRead Notification  <sup>{{ $unread_notifications->count() }}</sup></a>
-                @endif
+                @endauth
 
-            @endauth
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -64,20 +69,33 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
+                                    @auth
+
+                                            @if (session('impersonated_by'))
+                                            <a class="dropdown-item" href="{{ route('users.leave-impersonate') }}">
+                                                {{ __('Leave Impersonate') }}
+                                            </a>
+                                            @endif
+                                    
+                                    @endauth
+
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
                                 </div>
                             </li>
                         @endguest
@@ -90,11 +108,12 @@
             @yield('content')
         </main>
     </div>
-  <!-- Bootstrap JavaScript -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 
 </body>
+
 </html>
