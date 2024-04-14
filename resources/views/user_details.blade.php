@@ -29,7 +29,9 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Send Notification</th>
+                                <th>Impersonate</th>
                                 <th>Status</th>
 
                             </tr>
@@ -39,8 +41,10 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td><a href="{{ route('send.notification', $user->id) }}">Send Notification</a></td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->role }}</td>
+                                    <td><a href="{{ route('send.notification', $user->id) }} " class="btn btn-primary">Send Notification</a></td>
+                                    <td><a href="{{ route('users.impersonate', $user->id) }}" class="btn btn-primary" >impersonate</a></td>
                                     <td>Unread</td>
 
                                 </tr>

@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::impersonate();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -16,7 +17,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
     Route::get('/unread-notification', [App\Http\Controllers\UserController::class, 'unreadNotification'])->name('unread.notification');
+    Route::get('/impersonate/{id}', [App\Http\Controllers\ImpersonateController::class, 'impersonate'])->name('users.impersonate');
 });
+Route::get('/leave-impersonate', [App\Http\Controllers\ImpersonateController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 
 
 // Notification
