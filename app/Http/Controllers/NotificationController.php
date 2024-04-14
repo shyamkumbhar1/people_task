@@ -17,6 +17,7 @@ class NotificationController extends Controller
             [
                 'id' => 1,
                 'title' => 'First Post',
+                'type' => 'Marketing',
                 'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ];
 
