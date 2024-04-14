@@ -21,14 +21,17 @@ class NotificationController extends Controller
             ];
 
             $userToNotify = User::where('id', $id)->first();
-            // dd( $userToNotify);
 
-        if ($userToNotify) {
+            // dd( $userToNotify->notification_switch);
+
+        if ($userToNotify->notification_switch == 1) {
             Notification::send($userToNotify, new NewPostNotification($post));
 
             return back()->with('success', 'Notification sent successfully.');
         } else {
-            echo "User Not Found";
+            $message = "$userToNotify->name has stop  Post Notification";
+            return back()->with('success', $message );
+
         }
 
     }
