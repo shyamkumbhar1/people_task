@@ -29,8 +29,10 @@ class UserController extends Controller
     public function editUserSetting()
     {
         $user = Auth::user();
+        $users = User::all();
+        $unread_notifications = Notification::whereNull('read_at')->get();
         $notifications = Notification::all();
-        return view('user_setting', compact('user'));
+        return view('user_setting', compact('user','users','notifications','unread_notifications'));
     }
 
     public function updateUserSetting(Request $request)
@@ -48,6 +50,7 @@ class UserController extends Controller
 
             // Save the changes
             $user->save();
+            // dd($user);
 
             return redirect()->route('home')->with('success', 'User Setting Update successfully.');
         } catch (\Exception $e) {

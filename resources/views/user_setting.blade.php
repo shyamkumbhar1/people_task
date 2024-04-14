@@ -38,9 +38,22 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label>Receive Notification</label><br>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="notification_on" name="notification_switch" value="1" {{ auth()->user()->notification_switch == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="notification_on">On</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="notification_off" name="notification_switch" value="0" {{ auth()->user()->notification_switch == 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="notification_off">Off</label>
+                                </div>
+                            </div>
+
+
                             <div class="form-group form-check">
-                                <input type="checkbox"  value="1" class="form-check-input" id="notification_switch" name="notification_switch" {{ auth()->user()->notification_switch ? 'checked' : '' }}>
-                                <label class="form-check-label" for="notification_switch">Receive Notification</label>
+                                <input type="checkbox" required   value="1" class="form-check-input" >
+                                <label class="form-check-label" >Please Select checkbox </label>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save Settings</button>
